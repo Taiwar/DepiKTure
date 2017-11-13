@@ -1,0 +1,41 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorHint">@color/textColorPrimaryDark</item>
+        <item name="android:buttonStyle">@style/DPButton</item>
+        <item name="android:alertDialogTheme">@style/DPAlertDialog</item>
+        <item name="android:editTextStyle">@style/DPEditText</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="AppTheme.NoActionBar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="DPButton" parent="android:style/Widget.Button">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/textColorPrimary</item>
+        <item name="android:background">@color/colorAccentDark</item>
+    </style>
+
+    <style name="DPEditText" parent="android:style/Widget.EditText">
+        <item name="android:textColor">@color/textColorPrimary</item>
+    </style>
+
+    <style name="DPAlertDialog" parent="@android:style/Theme.Material.Dialog.Alert">
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:textColor">@color/textColorPrimary</item>
+    </style>
+
+</resources>
