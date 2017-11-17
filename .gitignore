@@ -3,16 +3,6 @@
 ### AndroidStudio ###
 # Covers files to be ignored for android development using Android Studio.
 
-# Built application files
-*.apk
-*.ap_
-
-# Files for the ART/Dalvik VM
-*.dex
-
-# Java class files
-*.class
-
 # Generated files
 bin/
 gen/
@@ -20,7 +10,6 @@ out/
 
 # Gradle files
 .gradle
-.gradle/
 build/
 
 # Signing files
@@ -36,7 +25,6 @@ proguard/
 *.log
 
 # Android Studio
-/*/build/
 /*/local.properties
 /*/out
 /*/*/build
@@ -53,8 +41,6 @@ gen-external-apklibs
 # External native build folder generated in Android Studio 2.2 and later
 .externalNativeBuild
 
-# NDK
-obj/
 
 # IntelliJ IDEA
 *.iml
@@ -127,3 +113,4 @@ fabric.properties
 
 # End of https://www.gitignore.io/api/androidstudio
 /app/src/main/res/values/secrets.xml
+/app/google-services.json
