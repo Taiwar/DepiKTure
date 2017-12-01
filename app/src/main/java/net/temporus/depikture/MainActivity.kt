@@ -5,7 +5,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.constraint.ConstraintLayout
 import android.support.v7.widget.Toolbar
 import android.text.InputType.*
 import android.util.Log
@@ -36,7 +35,6 @@ class MainActivity : AppCompatActivity() {
     private val logTag = "Main"
     private var dbHelper: DBHelper? = null
     private var user: User? = null
-    private var mainLayout: ConstraintLayout? = null
     private var isLoggedIn: Boolean = false
     private var currentDialog: DialogInterface? = null
 
@@ -48,8 +46,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         FuelManager.instance.apply {
-            //basePath = "https://temporus.net/api"
-            basePath = "http://192.168.178.33:3000/api"
+            basePath = "https://temporus.net/api"
             baseHeaders = mapOf("Device" to "Android")
         }
 
@@ -61,8 +58,6 @@ class MainActivity : AppCompatActivity() {
             loginFab.hide()
             newGameBtn.visibility = View.VISIBLE
         }
-
-        mainLayout = findViewById(R.id.activity_main)
 
         newGameBtn.setOnClickListener{
             currentDialog = alert {
@@ -238,7 +233,6 @@ class MainActivity : AppCompatActivity() {
                     val wordList = editText {
                         hint = "Wordlist"
                         textSize = 20f
-                        inputType = TYPE_CLASS_NUMBER
                     }
                     val title = editText {
                         hint = "Lobby title"
