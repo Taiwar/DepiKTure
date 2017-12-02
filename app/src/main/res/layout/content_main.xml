@@ -8,47 +8,21 @@
     android:background="@drawable/background"
     tools:context="net.temporus.depikture.MainActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="100dp"
-        android:fontFamily="sans-serif"
-        android:shadowColor="@android:color/black"
-        android:text="@string/app_name"
-        android:textAllCaps="false"
-        android:textAppearance="@android:style/TextAppearance.Material.Headline"
-        android:textColor="@color/textColorPrimary"
-        android:textSize="40sp"
-        android:textStyle="normal|bold|italic"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/joinBtn"
-        style="@style/Widget.AppCompat.Button.Colored"
+        style="@android:style/Widget.Material.Button.Borderless"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="250dp"
         android:background="@color/colorAccentDark"
         android:text="@string/join"
         android:textStyle="bold"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/newGameBtn"
@@ -75,7 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|start"
         android:layout_marginBottom="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp"
         app:backgroundTint="@color/colorAccentDark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
