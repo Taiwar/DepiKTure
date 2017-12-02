@@ -66,6 +66,7 @@ class LobbyActivity : AppCompatActivity() {
 
         if (isOwner) {
             jwt = intent.getStringExtra("jwt")
+            messageView.visibility = View.GONE
             start_button.visibility = View.VISIBLE
             start_button.setOnClickListener {
                 start_button.visibility = View.GONE
@@ -85,7 +86,8 @@ class LobbyActivity : AppCompatActivity() {
                                 lobby.isOwner = isOwner
                                 Log.d("Started lobby", lobby.title)
                             }, failure = { error ->
-                                Log.e("error", error.toString())
+                                start_button.visibility = View.VISIBLE
+                                toast(error.toString())
                             })
                         }
             }
@@ -108,7 +110,7 @@ class LobbyActivity : AppCompatActivity() {
                                 lobby.isOwner = isOwner
                                 Log.d("Initiated next round", lobby.title)
                             }, failure = { error ->
-                                Log.e("error", error.toString())
+                                toast(error.toString())
                             })
                         }
             }
@@ -156,7 +158,7 @@ class LobbyActivity : AppCompatActivity() {
                                     finish()
                                     Log.d("Stopped lobby", lobby.title)
                                 }, failure = { error ->
-                                    Log.e("error", error.toString())
+                                    toast(error.toString())
                                 })
                             }
                 }
@@ -183,7 +185,7 @@ class LobbyActivity : AppCompatActivity() {
                         )
                         Log.d("player", this.player!!.username)
                     }, failure = { error ->
-                        Log.e("error", error.toString())
+                        toast(error.toString())
                     })
                 }
     }
@@ -206,6 +208,7 @@ class LobbyActivity : AppCompatActivity() {
                 intent.putExtra("lobby", lobby)
                 intent.putExtra("word", extra)
                 start_button.visibility = View.GONE
+                messageView.visibility = View.VISIBLE
                 messageView.setText(R.string.wait_message)
                 startActivity(intent)
             }
@@ -223,9 +226,9 @@ class LobbyActivity : AppCompatActivity() {
             "stage 3" -> {
                 toast("Round has ended!")
                 if (isOwner) {
+                    messageView.visibility = View.GONE
                     next_button.visibility = View.VISIBLE
                 }
-                messageView.setText(R.string.waiting_for_owner)
             }
             "ended" -> {
                 toast("Game has ended!")
