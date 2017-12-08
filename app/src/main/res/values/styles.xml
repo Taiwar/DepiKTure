@@ -12,6 +12,7 @@
         <item name="android:alertDialogTheme">@style/DPAlertDialog</item>
         <item name="android:actionBarStyle">@style/DPActionBar</item>
         <item name="android:popupMenuStyle">@style/DPPopupMenu</item>
+        <item name="android:textViewStyle">@style/DPTextView</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -23,6 +24,10 @@
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/textColorPrimary</item>
         <item name="android:background">@color/colorAccentDark</item>
+    </style>
+
+    <style name="DPTextView" parent="android:style/Widget.TextView">
+        <item name="android:textColor">@color/textColorPrimary</item>
     </style>
 
     <style name="DPPopupMenu">
