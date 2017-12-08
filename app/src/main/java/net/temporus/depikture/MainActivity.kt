@@ -170,22 +170,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.main, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id = item.itemId
-
-        if (id == R.id.action_settings) {
-            startActivity(Intent(this@MainActivity, SettingsActivity::class.java))
-            return true
-        }
-
-        return super.onOptionsItemSelected(item)
-    }
-
     private fun createWithDefaultDialog() {
         currentDialog = alert {
             title = "Create lobby"
@@ -352,5 +336,24 @@ class MainActivity : AppCompatActivity() {
                         })
                     }
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+
+        if (id == R.id.action_settings) {
+            startActivity(Intent(this@MainActivity, SettingsActivity::class.java))
+            return true
+        } else if(id == R.id.action_about) {
+            startActivity(Intent(this@MainActivity, AboutActivity::class.java))
+            return true
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 }

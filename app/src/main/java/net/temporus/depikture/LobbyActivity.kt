@@ -4,7 +4,6 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.opengl.Visibility
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
 import android.support.v4.content.LocalBroadcastManager
