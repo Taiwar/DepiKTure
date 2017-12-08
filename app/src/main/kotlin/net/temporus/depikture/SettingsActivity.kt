@@ -48,7 +48,6 @@ class SettingsFragment : PreferenceFragment(), SharedPreferences.OnSharedPrefere
         addPreferencesFromResource(R.xml.preferences)
         if (activity != null) {
             val prefs = Prefs.with(activity)
-            val q = prefs.all
             updateServerUrlSummary(prefs)
         }
     }
