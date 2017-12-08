@@ -2,6 +2,7 @@ package net.temporus.depikture
 
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -17,7 +18,6 @@ import com.github.kittinunf.fuel.core.FuelManager
 import com.github.kittinunf.fuel.httpPost
 import com.google.firebase.iid.FirebaseInstanceId
 import net.temporus.depikture.objects.User
-import net.temporus.depikture.utils.DBHelper
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
 import kotlinx.android.synthetic.main.content_main.*
@@ -25,9 +25,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import net.temporus.depikture.objects.Lobby
 import net.temporus.depikture.objects.Player
-import net.temporus.depikture.utils.isEmailValid
-import net.temporus.depikture.utils.isNameValid
-import net.temporus.depikture.utils.isPasswordValid
+import net.temporus.depikture.utils.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -37,6 +35,7 @@ class MainActivity : AppCompatActivity() {
     private var user: User? = null
     private var isLoggedIn: Boolean = false
     private var currentDialog: DialogInterface? = null
+    private var prefs: SharedPreferences? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,9 +43,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
+        prefs = Prefs.with(this)
 
         FuelManager.instance.apply {
-            basePath = "https://temporus.net/api"
+            basePath = prefs!!.getStringAsString(applicationContext, R.string.pref_server_url,
+                    R.string.pref_server_url_default)
             baseHeaders = mapOf("Device" to "Android")
         }
 
@@ -61,11 +62,11 @@ class MainActivity : AppCompatActivity() {
 
         newGameBtn.setOnClickListener{
             currentDialog = alert {
-                title = "Create lobby"
+                title = getString(R.string.title_create)
                 customView {
                     verticalLayout {
                         padding = dip(24)
-                        button("Choose a default wordlist") {
+                        button(getString(R.string.choose_default_word_list)) {
                             padding = dip(8)
                             textSize = 20f
                             onClick {
@@ -73,12 +74,12 @@ class MainActivity : AppCompatActivity() {
                                 this@MainActivity.createWithDefaultDialog()
                             }
                         }
-                        textView("or") {
+                        textView(getString(R.string.or)) {
                             gravity = Gravity.CENTER
                             textSize = 22f
                             textColor = Color.WHITE
                         }
-                        button("Use a custom wordlist") {
+                        button(getString(R.string.enter_custom_word_list_id)) {
                             padding = dip(8)
                             textSize = 20f
                             onClick {
@@ -93,19 +94,19 @@ class MainActivity : AppCompatActivity() {
 
         joinBtn.setOnClickListener {
             currentDialog = alert {
-                title = "Join"
+                title = getString(R.string.title_join)
                 customView {
                     verticalLayout {
                         padding = dip(24)
                         val title = editText {
-                            hint = "Lobby title"
+                            hint = getString(R.string.hint_lobby_title)
                             textSize = 20f
                         }
                         val username = editText {
-                            hint = "Username"
+                            hint = getString(R.string.hint_username)
                             textSize = 20f
                         }
-                        button("Join") {
+                        button(getString(R.string.btn_join)) {
                             padding = dip(8)
                             textSize = 22f
                             onClick {
@@ -113,14 +114,15 @@ class MainActivity : AppCompatActivity() {
                                 val usernameVal = username.text.toString()
                                 if (isNameValid(titleVal) && isNameValid(usernameVal)) {
                                     currentDialog!!.dismiss()
-                                    val dialog = indeterminateProgressDialog(
-                                            message = "Please wait a bit…",
-                                            title = "Joining ${title.text} as, ${username.text}")
+                                    val progress = indeterminateProgressDialog(
+                                            message = getString(R.string.wait_progress),
+                                            title = getString(R.string.wait_joining)
+                                    )
                                     val player = Player()
                                     player.username = usernameVal
-                                    attemptJoin(titleVal, player, dialog)
+                                    attemptJoin(titleVal, player, progress)
                                 } else {
-                                    toast("Enter a valid lobby title")
+                                    toast(getString(R.string.prompt_lobby_title))
                                 }
                             }
                         }
@@ -131,20 +133,20 @@ class MainActivity : AppCompatActivity() {
 
         loginFab.setOnClickListener {
             currentDialog = alert {
-                title = "Log in"
+                title = getString(R.string.title_login)
                 customView {
                     verticalLayout {
                         padding = dip(24)
                         val email = editText {
-                            hint = "Email"
+                            hint = getString(R.string.hint_email)
                             textSize = 20f
                         }
                         val password = editText {
-                            hint = "Password"
+                            hint = getString(R.string.hint_password)
                             textSize = 20f
                             inputType = TYPE_CLASS_TEXT or TYPE_TEXT_VARIATION_PASSWORD
                         }
-                        button("Login") {
+                        button(getString(R.string.title_login)) {
                             padding = dip(8)
                             textSize = 22f
                             onClick {
@@ -152,15 +154,16 @@ class MainActivity : AppCompatActivity() {
                                 val passwordVal = password.text.toString()
                                 if (isEmailValid(emailVal) && isPasswordValid(passwordVal)) {
                                     currentDialog!!.dismiss()
-                                    val dialog = indeterminateProgressDialog(
-                                            message = "Please wait a bit…",
-                                            title = "Logging in as ${email.text}")
+                                    val progress = indeterminateProgressDialog(
+                                            message = getString(R.string.wait_progress),
+                                            title = getString(R.string.wait_login)
+                                    )
                                     val user = User()
                                     user.email = emailVal
                                     user.password = passwordVal
-                                    attemptAuth(user, dialog)
+                                    attemptAuth(user, progress)
                                 } else {
-                                    toast("Enter a valid email & password")
+                                    toast(getString(R.string.error_invalid))
                                 }
                             }
                         }
@@ -172,15 +175,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun createWithDefaultDialog() {
         currentDialog = alert {
-            title = "Create lobby"
+            title = getString(R.string.title_create)
             customView {
                 verticalLayout {
                     padding = dip(24)
                     val title = editText {
-                        hint = "Lobby title"
+                        hint = getString(R.string.hint_wordlist_title)
                         textSize = 20f
                     }
-                    button("Next") {
+                    button(getString(R.string.next)) {
                         padding = dip(8)
                         textSize = 22f
                         onClick {
@@ -190,16 +193,17 @@ class MainActivity : AppCompatActivity() {
                                 val lobby = Lobby()
                                 lobby.title = titleVal
                                 val wordlists = listOf("German", "English")
-                                selector("Select a wordlist", wordlists, { _, i ->
+                                selector(getString(R.string.select_wordlist), wordlists, { _, i ->
                                     currentDialog!!.dismiss()
-                                    val dialog = indeterminateProgressDialog(
-                                            message = "Please wait a bit…",
-                                            title = "Creating lobby")
+                                    val progress = indeterminateProgressDialog(
+                                            message = getString(R.string.wait_progress),
+                                            title = getString(R.string.wait_creating)
+                                    )
                                     lobby.wordlist = wordlists[i]
-                                    attemptCreate(lobby, user!!, dialog)
+                                    attemptCreate(lobby, user!!, progress)
                                 })
                             } else {
-                                toast("Title has to be at least 4 letters")
+                                toast(getString(R.string.prompt_lobby_title_invalid))
                             }
                         }
                     }
@@ -210,19 +214,19 @@ class MainActivity : AppCompatActivity() {
 
     private fun createWithCustomDialog() {
         currentDialog = alert {
-            title = "Create lobby"
+            title = getString(R.string.title_create)
             customView {
                 verticalLayout {
                     padding = dip(24)
                     val wordList = editText {
-                        hint = "Wordlist"
+                        hint = getString(R.string.hint_wordlist_title)
                         textSize = 20f
                     }
                     val title = editText {
-                        hint = "Lobby title"
+                        hint = getString(R.string.hint_lobby_title)
                         textSize = 20f
                     }
-                    button("Create") {
+                    button(getString(R.string.create)) {
                         padding = dip(8)
                         textSize = 22f
                         onClick {
@@ -231,14 +235,15 @@ class MainActivity : AppCompatActivity() {
                             if (isNameValid(titleVal) && isNameValid(wordlistVal)) {
                                 currentDialog!!.dismiss()
                                 val dialog = indeterminateProgressDialog(
-                                        message = "Please wait a bit…",
-                                        title = "Creating lobby")
+                                        message = getString(R.string.wait_progress),
+                                        title = getString(R.string.wait_creating)
+                                )
                                 val lobby = Lobby()
                                 lobby.title = titleVal
                                 lobby.wordlist = wordlistVal
                                 attemptCreate(lobby, user!!, dialog)
                             } else {
-                                toast("Title has to be at least 4 letters")
+                                toast(getString(R.string.prompt_lobby_title_invalid))
                             }
                         }
                     }
@@ -298,10 +303,11 @@ class MainActivity : AppCompatActivity() {
                             )
                         }, failure = { error ->
                             Log.e("error", error.toString())
+                            toast(getString(R.string.error_join))
                         })
                     }
         } else {
-            toast("Google Firebase isn't working, try again later!")
+            toast(getString(R.string.error_firebase))
         }
     }
 
@@ -332,7 +338,7 @@ class MainActivity : AppCompatActivity() {
 
                         }, failure = { error ->
                             Log.e("error", error.toString())
-                            toast("Couldn't create lobby")
+                            toast(getString(R.string.error_create))
                         })
                     }
         }

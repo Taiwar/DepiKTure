@@ -5,6 +5,6 @@
     <string name="pref_server_url" translatable="false">pref:server-url</string>
 
     <!-- default values for preferences -->
-    <string name="pref_server_url_default">https://temporus.net/api</string>
+    <string name="pref_server_url_default" translatable="false">https://temporus.net/api</string>
 
 </resources>

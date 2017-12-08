@@ -1,56 +1,100 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name" translatable="false">Depicture</string>
+
+    <!-- About -->
     <string name="about_textview">About Depicture</string>
-    <string name="action_settings">Settings</string>
-    <string name="action_sign_in">Sign in</string>
-    <string name="default_confirm_question">Are you sure?</string>
-    <string name="draw_btn">Draw</string>
-    <string name="error_field_required">This field is required</string>
-    <string name="error_incorrect_password">Incorrect password</string>
-    <string name="error_invalid_name">Invalid username</string>
-    <string name="error_invalid_password">Password is too short</string>
-    <string name="form_lobby_id_hint">Lobby ID</string>
-    <string name="home_item">Home</string>
-    <string name="join">Join</string>
-    <string name="log_in_item">Log in</string>
-    <string name="login_reminder">Log in to use online functionalities</string>
-    <string name="logout_item">Log out</string>
-    <string name="message_default">Waiting for owner to start</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="new_game_btn">New Game</string>
-    <string name="no">No</string>
-    <string name="pref_about_title">About Depicture</string>
-    <string name="pref_general_title">General</string>
-    <string name="pref_header_general">General</string>
-    <string name="prompt_name">Username</string>
-    <string name="prompt_password">Password</string>
-    <string name="title_activity_draw">Draw</string>
-    <string name="title_activity_lobby">Lobby</string>
-    <string name="title_activity_login">Log In</string>
-    <string name="yes">Yes</string>
-    <string name="title_activity_settings">Settings</string>
-    <string name="confirmation_question">Are you sure?</string>
-    <string name="choose_default_word_list">Choose a default Word list</string>
-    <string name="default_word">Word</string>
-    <string name="description">Description</string>
-    <string name="create">Create</string>
-    <string name="enter_a_fitting_description">Enter a fitting description</string>
-    <string name="enter_custom_word_list_id">enter a custom WordList ID</string>
-    <string name="exit_image">Exit image</string>
-    <string name="game_started">The game is afoot!   Draw:</string>
-    <string name="next_round">Next Round</string>
-    <string name="next_round_error">Couldn\'t start next round</string>
+    <string-array name="about_text_list">
+        <item>Version: DEVELOPMENT</item>
+        <item>License Type: GNU General Public License 3</item>
+        <item>Developer: Jonas Müller</item>
+    </string-array>
+
+    <!-- Nav -->
+    <string name="action_about">About</string>
+
+    <!-- Misc -->
+    <string name="filler_string" translatable="false">     </string>
+    <string name="exit_button_content_description">Log In</string>
     <string name="or">or</string>
+    <string-array name="default_wordLists">
+        <item>Default(English)</item>
+        <item>Default(German)</item>
+    </string-array>
+
+    <!-- Main -->
+    <string name="new_game_btn">New Game</string>
+    <string name="join_game_btn">Join Game</string>
+
+    <!-- Lobby -->
+    <string name="title_activity_lobby">Lobby</string>
+    <string name="default_lobby_title">Title</string>
+    <string name="message_default">Message</string>
+    <string name="wait_players">Waiting for other players…</string>
     <string name="start_game">Start Game</string>
+    <string name="next_round">Next Round</string>
     <string name="start_lobby_error">Couldn\'t start lobby</string>
-    <string name="submit">Submit</string>
-    <string name="wait_message">Waiting for other players…</string>
-    <string name="waiting_for_owner">Waiting for lobby owner</string>
+    <string name="wait_owner">Waiting for lobby owner</string>
+    <string name="next_round_error">Couldn\'t start next round</string>
+
+    <!-- Draw -->
+    <string name="title_activity_draw">Draw</string>
+    <string name="draw_btn">Draw</string>
+    <string name="game_started">The game is afoot!   Draw:</string>
+    <string name="_5" translatable="false">5</string>
+    <string name="default_word">Word</string>
+
+    <!-- Enter Description -->
+    <string name="enter_a_fitting_description">Enter a fitting description</string>
+    <string name="description">Description</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="action_settings">Settings</string>
+    <string name="pref_server_url_title">Server URL</string>
+    <string name="pref_server_url_summary">Enter a gameserver URL</string>
+
+    <!-- Dialogs -->
+    <string name="default_confirm_question">Are you sure?</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
     <string name="wordlist_id">WordList ID</string>
+    <string name="cancel">Cancel</string>
+    <string name="submit">Submit</string>
+    <string name="wait_progress">Please wait a bit…</string>
+
+    <!-- Login Dialog -->
+    <string name="title_login">Log in</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="prompt_email">Invalid email</string>
+    <string name="error_invalid_password">Password is too short</string>
+    <string name="error_incorrect_password">Incorrect password</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="error_invalid">Enter a valid email &amp; password</string>
+    <string name="wait_login">Logging in</string>
+
+    <!-- Create/Join Dialog -->
+    <string name="title_create">Create Lobby</string>
+    <string name="title_join">Join Lobby</string>
+    <string name="choose_default_word_list">Choose a default wordlist</string>
+    <string name="enter_custom_word_list_id">Enter a custom WordList ID</string>
+    <string name="create">Create</string>
+    <string name="next">Next</string>
+    <string name="select_wordlist">Select Wordlist</string>
+    <string name="hint_lobby_title">Lobby title</string>
+    <string name="hint_wordlist_title">Wordlist title</string>
+    <string name="hint_username">Username</string>
+    <string name="prompt_lobby_title">Enter a valid lobby title!</string>
+    <string name="prompt_lobby_title_invalid">Title has to be at least 4 letters</string>
+    <string name="wait_creating">Creating lobby</string>
+    <string name="wait_joining">Joining lobby</string>
+    <string name="error_create">Couldn\'t create lobby</string>
+    <string name="error_join">Couldn\'t join lobby</string>
+    <string name="error_firebase">Google Firebase isn\'t working, try again later!</string>
+
+    <!-- Brush width dialog -->
+    <string name="width">Width</string>
     <string name="set">Set</string>
     <string name="set_brush_width">Set brush width</string>
-    <string name="width">Width</string>
-    <string name="cancel">Cancel</string>
-    <string name="exit_button_description">Exit Button</string>
+
 </resources>

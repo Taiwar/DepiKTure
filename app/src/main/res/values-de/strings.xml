@@ -1,56 +1,79 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- About -->
     <string name="about_textview">Über Depicture</string>
-    <string name="action_settings">Einstellungen</string>
-    <string name="action_sign_in">Anmelden</string>
-    <string name="default_confirm_question">Bist du sicher?</string>
-    <string name="draw_btn">Zeichnen</string>
-    <string name="error_field_required">Dieses Feld wird benötigt</string>
-    <string name="error_incorrect_password">Passwort falsch</string>
-    <string name="error_invalid_name">Nutzername nicht vorhanden</string>
-    <string name="error_invalid_password">Passwort zu kurz</string>
-    <string name="form_lobby_id_hint">Lobby ID</string>
-    <string name="home_item">Home</string>
-    <string name="join">Beitreten</string>
-    <string name="login_reminder">Anmelden um Onlinefunktionen zu nutzen</string>
-    <string name="log_in_item">Anmelden</string>
-    <string name="logout_item">Abmelden</string>
-    <string name="message_default">Nachricht</string>
-    <string name="navigation_drawer_close">Benachrichtigungsleiste schließen</string>
-    <string name="navigation_drawer_open">Benachrichtigungsleiste öffnen</string>
-    <string name="new_game_btn">Neues Spiel</string>
-    <string name="no">Nein</string>
-    <string name="pref_about_title">Über Depicture</string>
-    <string name="pref_general_title">Allgemein</string>
-    <string name="pref_header_general">Allgemein</string>
-    <string name="prompt_name">Nutzername</string>
-    <string name="prompt_password">Passwort</string>
-    <string name="title_activity_draw">Zeichnen</string>
-    <string name="title_activity_lobby">Lobby</string>
-    <string name="title_activity_login">Anmelden</string>
-    <string name="title_activity_settings">Einstellungen</string>
-    <string name="yes">Ja</string>
-    <string name="choose_default_word_list">Wähle eine standard Wortliste</string>
-    <string name="confirmation_question">Bist du sicher?</string>
-    <string name="default_word">Wort</string>
-    <string name="description">Beschreibung</string>
-    <string name="create">Erstellen</string>
-    <string name="enter_a_fitting_description">Gib eine passende Beschreibung ein</string>
-    <string name="enter_custom_word_list_id">gib eine eigene Wortlisten ID ein</string>
-    <string name="exit_image">Schließen Bild</string>
-    <string name="game_started">Das Spiel hat begonnen! Zeichne:</string>
-    <string name="next_round">Nächste Runde</string>
-    <string name="next_round_error">Konnte nächste Runde nicht starten</string>
+    <string-array name="about_text_list">
+        <item>Version: DEVELOPMENT</item>
+        <item>License Type: GNU General Public License 3</item>
+        <item>Developer: Jonas Müller</item>
+    </string-array>
+
+    <!-- Nav -->
+    <string name="action_about">Über</string>
+
+    <!-- Misc -->
+    <string name="exit_button_content_description">Einloggen</string>
     <string name="or">oder</string>
-    <string name="start_game">Spiel starten</string>
-    <string name="start_lobby_error">Konnte Lobby nicht starten</string>
-    <string name="submit">Absenden</string>
+    <string-array name="default_wordLists">
+        <item>Default(English)</item>
+        <item>Default(German)</item>
+    </string-array>
+
+    <!-- Main -->
+    <string name="new_game_btn">Neues Spiel</string>
+    <string name="join_game_btn">Spiel Beitreten</string>
+
+    <!-- Login -->
+    <string name="prompt_name">Nutzename</string>
+    <string name="prompt_password">Passwort</string>
+    <string name="error_invalid_name">Ungültiger Nutzername</string>
+    <string name="error_invalid_password">Passwort zu lang</string>
+    <string name="error_incorrect_password">Falsches Passwort</string>
+    <string name="error_field_required">Dieses Feld muss ausgefüllt sein</string>
+
+    <!-- Lobby -->
+    <string name="title_activity_lobby">Lobby</string>
+    <string name="default_lobby_title">Titel</string>
+    <string name="message_default">Nachricht</string>
     <string name="wait_message">Warte auf andere Spieler…</string>
-    <string name="waiting_for_owner">Warte auf Lobbybesitzer</string>
+    <string name="start_game">Spiel Starten</string>
+    <string name="next_round">Nächste Runde</string>
+    <string name="start_lobby_error">Konnte Lobby nicht starten</string>
+    <string name="waiting_for_owner">Warte auf Lobbybesitzer…</string>
+    <string name="next_round_error">Konnte nächste Runde nicht starten</string>
+
+    <!-- Draw -->
+    <string name="title_activity_draw">Zeichnen</string>
+    <string name="draw_btn">Zeichnen</string>
+    <string name="game_started">The game is afoot!   Draw:</string>
+    <string name="default_word">Wort</string>
+
+    <!-- Enter Description -->
+    <string name="enter_a_fitting_description">Gib eine passende Beschreibung ein</string>
+    <string name="description">Beschreibung</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Einstellungen</string>
+    <string name="action_settings">Einstellungen</string>
+    <string name="pref_server_url_title">Server URL</string>
+    <string name="pref_server_url_summary">Gib eine server URL ein</string>
+
+    <!-- Dialogs -->
+    <string name="default_confirm_question">Bist du sicher?</string>
+    <string name="no">Nein</string>
+    <string name="yes">Ja</string>
     <string name="wordlist_id">Wortlisten ID</string>
-    <string name="set">Anwenden</string>
-    <string name="set_brush_width">Pinselbreite auswählen</string>
-    <string name="width">Breite</string>
     <string name="cancel">Abbrechen</string>
-    <string name="exit_button_description">Schließen Knopf</string>
+    <string name="submit">Absenden</string>
+
+    <!-- Create Dialog -->
+    <string name="choose_default_word_list">Wähle eine Standardwortliste</string>
+    <string name="enter_custom_word_list_id">Gib eine eigene Wortlisten ID ein</string>
+    <string name="create">Erstellen</string>
+
+    <!-- Brush width dialog -->
+    <string name="width">Breite</string>
+    <string name="set">Einstellen</string>
+    <string name="set_brush_width">Pinselbreite einstellen</string>
+
 </resources>
