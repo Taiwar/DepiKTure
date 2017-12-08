@@ -46,7 +46,6 @@
         android:maxLength="100"
         android:hint="@string/description"
         android:inputType="textPersonName"
-        android:textColor="@color/textColorPrimary"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

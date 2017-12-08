@@ -4,19 +4,15 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:textColorHint">@color/textColorPrimaryDark</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="android:textColorSecondary">@color/textColorPrimary</item>
+        <item name="android:textColorHint">@color/textColorSecondary</item>
+        <item name="android:background">@color/colorPrimary</item>
         <item name="android:buttonStyle">@style/DPButton</item>
         <item name="android:alertDialogTheme">@style/DPAlertDialog</item>
-        <item name="android:editTextStyle">@style/DPEditText</item>
+        <item name="android:actionBarStyle">@style/DPActionBar</item>
+        <item name="android:popupMenuStyle">@style/DPPopupMenu</item>
     </style>
-
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
-    <style name="AppTheme.NoActionBar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="AppTheme.NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
@@ -29,13 +25,16 @@
         <item name="android:background">@color/colorAccentDark</item>
     </style>
 
-    <style name="DPEditText" parent="android:style/Widget.EditText">
-        <item name="android:textColor">@color/textColorPrimary</item>
+    <style name="DPPopupMenu">
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
+
+    <style name="DPActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:background">@color/colorPrimary</item>
     </style>
 
     <style name="DPAlertDialog" parent="@android:style/Theme.Material.Dialog.Alert">
         <item name="android:background">@color/colorPrimary</item>
-        <item name="android:textColor">@color/textColorPrimary</item>
     </style>
 
 </resources>

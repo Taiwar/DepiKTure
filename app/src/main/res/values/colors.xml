@@ -6,6 +6,6 @@
     <color name="colorAccent">#00c853</color>
     <color name="colorAccentDark">#388e3c</color>
     <color name="textColorPrimary">#ffffff</color>
-    <color name="textColorPrimaryDark">#c5c5c5</color>
+    <color name="textColorSecondary">#b6b6b6</color>
     <color name="black_overlay">#66000000</color>
 </resources>

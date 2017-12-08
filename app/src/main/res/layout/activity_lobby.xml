@@ -6,24 +6,9 @@
     android:background="@color/colorAccentDark"
     tools:context="net.temporus.depikture.LobbyActivity">
 
-    <!-- The primary full-screen view. This can be replaced with whatever view
-         is needed to present your content, e.g. VideoView, SurfaceView,
-         TextureView, etc. -->
-    <ProgressBar
-        android:id="@+id/lobby_progress"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:visibility="gone" />
-
     <include
         layout="@layout/content_lobby"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
-    <!-- This FrameLayout insets its children based on system windows using
-         android:fitsSystemWindows. -->
 
 </FrameLayout>
