@@ -1,79 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <!-- About -->
     <string name="about_textview">Über Depicture</string>
-    <string-array name="about_text_list">
-        <item>Version: DEVELOPMENT</item>
-        <item>License Type: GNU General Public License 3</item>
-        <item>Developer: Jonas Müller</item>
-    </string-array>
-
-    <!-- Nav -->
     <string name="action_about">Über</string>
-
-    <!-- Misc -->
+    <string name="action_settings">Einstellungen</string>
     <string name="exit_button_content_description">Einloggen</string>
     <string name="or">oder</string>
-    <string-array name="default_wordLists">
-        <item>Default(English)</item>
-        <item>Default(German)</item>
-    </string-array>
-
-    <!-- Main -->
     <string name="new_game_btn">Neues Spiel</string>
-    <string name="join_game_btn">Spiel Beitreten</string>
-
-    <!-- Login -->
-    <string name="prompt_name">Nutzename</string>
-    <string name="prompt_password">Passwort</string>
-    <string name="error_invalid_name">Ungültiger Nutzername</string>
-    <string name="error_invalid_password">Passwort zu lang</string>
-    <string name="error_incorrect_password">Falsches Passwort</string>
-    <string name="error_field_required">Dieses Feld muss ausgefüllt sein</string>
-
-    <!-- Lobby -->
+    <string name="join_game_btn">Spiel beitreten</string>
     <string name="title_activity_lobby">Lobby</string>
     <string name="default_lobby_title">Titel</string>
+    <string name="correct_description">Du hast die korrekte Beschreibung eingegeben, gib eine andere ein!</string>
+    <string name="game_ended">Das Spiel ist vorbei</string>
+    <string name="round_ended">Die Runde ist vorbei</string>
     <string name="message_default">Nachricht</string>
-    <string name="wait_message">Warte auf andere Spieler…</string>
-    <string name="start_game">Spiel Starten</string>
+    <string name="start_game">Spiel starten</string>
     <string name="next_round">Nächste Runde</string>
-    <string name="start_lobby_error">Konnte Lobby nicht starten</string>
-    <string name="waiting_for_owner">Warte auf Lobbybesitzer…</string>
     <string name="next_round_error">Konnte nächste Runde nicht starten</string>
-
-    <!-- Draw -->
+    <string name="start_lobby_error">Konnte Spiel nicht starten</string>
+    <string name="wait_owner">Warte auf Lobbybesitzer</string>
+    <string name="wait_players">Warte auf spieler</string>
     <string name="title_activity_draw">Zeichnen</string>
     <string name="draw_btn">Zeichnen</string>
-    <string name="game_started">The game is afoot!   Draw:</string>
+    <string name="game_started">Das Spiel hat begonnen! Zeichne:</string>
     <string name="default_word">Wort</string>
-
-    <!-- Enter Description -->
-    <string name="enter_a_fitting_description">Gib eine passende Beschreibung ein</string>
+    <string name="enter_a_fitting_description">Gib eine passende Beschreibung ein!</string>
     <string name="description">Beschreibung</string>
-
-    <!-- Settings -->
-    <string name="settings_title">Einstellungen</string>
-    <string name="action_settings">Einstellungen</string>
+    <string name="title_activity_settings">Einstellungen</string>
     <string name="pref_server_url_title">Server URL</string>
-    <string name="pref_server_url_summary">Gib eine server URL ein</string>
-
-    <!-- Dialogs -->
-    <string name="default_confirm_question">Bist du sicher?</string>
+    <string name="pref_server_url_summary">Gib eine Spielserver URL ein</string>
+    <string name="q_stop_game">Spiel beenden?</string>
     <string name="no">Nein</string>
     <string name="yes">Ja</string>
     <string name="wordlist_id">Wortlisten ID</string>
     <string name="cancel">Abbrechen</string>
     <string name="submit">Absenden</string>
-
-    <!-- Create Dialog -->
-    <string name="choose_default_word_list">Wähle eine Standardwortliste</string>
-    <string name="enter_custom_word_list_id">Gib eine eigene Wortlisten ID ein</string>
+    <string name="title_login">Login</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Passwort</string>
+    <string name="prompt_email">Ungültige Email</string>
+    <string name="error_invalid_password">Passwort ist zu kurz</string>
+    <string name="error_incorrect_password">Falsches Passwort</string>
+    <string name="error_field_required">Dieses Feld muss ausgefüllt sein</string>
+    <string name="error_invalid">Gib eine korrekte Emailadresse ein</string>
+    <string name="title_create">Lobby erstellen</string>
+    <string name="title_join">Lobby beitreten</string>
+    <string name="btn_join">Beitreten</string>
+    <string name="choose_default_word_list">Wähle eine Standard Wortliste</string>
+    <string name="enter_custom_word_list_title">Gib einen eigenen Wortlistentitel ein</string>
     <string name="create">Erstellen</string>
-
-    <!-- Brush width dialog -->
+    <string name="next">Weiter</string>
+    <string name="select_wordlist">Wortliste aussuchen</string>
+    <string name="hint_lobby_title">Lobbytitel</string>
+    <string name="hint_wordlist_title">Wortlistentitel</string>
+    <string name="hint_username">Nutzername</string>
+    <string name="prompt_lobby_title">Gib einen korrekten Lobbytitel ein</string>
+    <string name="prompt_lobby_title_invalid">Titel muss mindestens 4 Zeichen lang sein</string>
+    <string name="error_create">Konnte Lobby nicht erstellen</string>
+    <string name="error_join">Konnte Lobby nicht beitreten</string>
+    <string name="error_firebase">Google Firebase funktioniert leider nicht, versuch es nochmal!</string>
+    <string name="wait_progress">Bitte warte einen Moment…</string>
+    <string name="wait_creating">Erstelle Lobby</string>
+    <string name="wait_starting">Starte Lobby</string>
+    <string name="wait_starting_round">Starte nächste Runde</string>
+    <string name="wait_joining">Trete bei</string>
+    <string name="wait_login">Logge ein</string>
+    <string name="wait_stopping">Stoppe Lobby</string>
     <string name="width">Breite</string>
     <string name="set">Einstellen</string>
     <string name="set_brush_width">Pinselbreite einstellen</string>
-
+    <string name="q_upload_drawing">Zeichnung hochlanden?</string>
+    <string name="q_upload_description">Beschreibung absenden?</string>
+    <string name="q_upload_choice">Diese Beschreibung auswählen?</string>
+    <string name="uploading">Lade hoch</string>
 </resources>

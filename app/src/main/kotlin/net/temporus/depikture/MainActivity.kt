@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity() {
                             textSize = 22f
                             textColor = Color.WHITE
                         }
-                        button(getString(R.string.enter_custom_word_list_id)) {
+                        button(getString(R.string.enter_custom_word_list_title)) {
                             padding = dip(8)
                             textSize = 20f
                             onClick {

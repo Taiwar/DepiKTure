@@ -55,12 +55,13 @@ class DrawActivity : AppCompatActivity() {
 
         fab_upload.setOnClickListener {
             alert {
-                title = "Upload drawing?"
+                title = getString(R.string.q_upload_drawing)
                 yesButton {
                     Log.d("Dev", "Save")
                     val progress = indeterminateProgressDialog(
-                            message = "Please wait a bit…",
-                            title = "Loading")
+                            message = getString(R.string.wait_progress),
+                            title = getString(R.string.uploading)
+                    )
                     try {
                         drawView!!.saveCanvas(applicationContext, currPlayer!!)
                     } catch (e: PackageManager.NameNotFoundException) {

@@ -29,13 +29,16 @@
     <!-- Lobby -->
     <string name="title_activity_lobby">Lobby</string>
     <string name="default_lobby_title">Title</string>
+    <string name="correct_description">You submitted the correct description. Please submit a different one!</string>
+    <string name="game_ended">The game has ended!</string>
+    <string name="round_ended">The round has ended!</string>
     <string name="message_default">Message</string>
-    <string name="wait_players">Waiting for other players…</string>
     <string name="start_game">Start Game</string>
     <string name="next_round">Next Round</string>
+    <string name="next_round_error">Couldn\'t start next round</string>
     <string name="start_lobby_error">Couldn\'t start lobby</string>
     <string name="wait_owner">Waiting for lobby owner</string>
-    <string name="next_round_error">Couldn\'t start next round</string>
+    <string name="wait_players">Waiting for other players…</string>
 
     <!-- Draw -->
     <string name="title_activity_draw">Draw</string>
@@ -54,13 +57,16 @@
     <string name="pref_server_url_summary">Enter a gameserver URL</string>
 
     <!-- Dialogs -->
-    <string name="default_confirm_question">Are you sure?</string>
+    <string name="q_stop_game">Stop game?</string>
+    <string name="q_upload_drawing">Upload drawing?</string>
+    <string name="q_upload_description">Submit description?</string>
+    <string name="q_upload_choice">Choose this description?</string>
     <string name="no">No</string>
     <string name="yes">Yes</string>
     <string name="wordlist_id">WordList ID</string>
     <string name="cancel">Cancel</string>
     <string name="submit">Submit</string>
-    <string name="wait_progress">Please wait a bit…</string>
+    <string name="uploading">Uploading</string>
 
     <!-- Login Dialog -->
     <string name="title_login">Log in</string>
@@ -71,14 +77,13 @@
     <string name="error_incorrect_password">Incorrect password</string>
     <string name="error_field_required">This field is required</string>
     <string name="error_invalid">Enter a valid email &amp; password</string>
-    <string name="wait_login">Logging in</string>
 
     <!-- Create/Join Dialog -->
     <string name="title_create">Create Lobby</string>
     <string name="title_join">Join Lobby</string>
     <string name="btn_join">Join</string>
     <string name="choose_default_word_list">Choose a default wordlist</string>
-    <string name="enter_custom_word_list_id">Enter a custom WordList ID</string>
+    <string name="enter_custom_word_list_title">Enter a custom WordList title</string>
     <string name="create">Create</string>
     <string name="next">Next</string>
     <string name="select_wordlist">Select Wordlist</string>
@@ -87,11 +92,18 @@
     <string name="hint_username">Username</string>
     <string name="prompt_lobby_title">Enter a valid lobby title!</string>
     <string name="prompt_lobby_title_invalid">Title has to be at least 4 letters</string>
-    <string name="wait_creating">Creating lobby</string>
-    <string name="wait_joining">Joining lobby</string>
     <string name="error_create">Couldn\'t create lobby</string>
     <string name="error_join">Couldn\'t join lobby</string>
     <string name="error_firebase">Google Firebase isn\'t working, try again later!</string>
+
+    <!-- Progress Dialog -->
+    <string name="wait_progress">Please wait a bit…</string>
+    <string name="wait_creating">Creating lobby</string>
+    <string name="wait_starting">Starting lobby</string>
+    <string name="wait_starting_round">Starting next round</string>
+    <string name="wait_joining">Joining lobby</string>
+    <string name="wait_login">Logging in</string>
+    <string name="wait_stopping">Stopping lobby</string>
 
     <!-- Brush width dialog -->
     <string name="width">Width</string>

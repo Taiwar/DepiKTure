@@ -53,10 +53,10 @@ class LobbyActivity : AppCompatActivity() {
                     lobby = intent.getSerializableExtra("lobby") as Lobby
                     lobby.currentPlayer = player
                     lobby.isOwner = isOwner
-                    Log.d("Dev", "Updating Lobby: $header; $lobby; $extra")
+                    Log.d(logTag, "Updating Lobby: $header; $lobby; $extra")
                     updateLobby(lobby, extra)
                 } else if (header === "instanceID") {
-                    Log.d("Dev", "Updating instanceID: $extra")
+                    Log.d(logTag, "Updating instanceID: $extra")
                     updateInstanceID(extra)
                 }
 
@@ -70,8 +70,8 @@ class LobbyActivity : AppCompatActivity() {
             start_button.setOnClickListener {
                 start_button.visibility = View.GONE
                 val progress = indeterminateProgressDialog(
-                        message = "Please wait a bit…",
-                        title = "Loading")
+                        message = getString(R.string.wait_progress),
+                        title = getString(R.string.wait_starting))
                 "/lobbies/start".httpGet()
                         .header("Content-Type" to "application/json", "Authorization" to "Token " + jwt)
                         .responseJson { request, _, result ->
@@ -93,8 +93,8 @@ class LobbyActivity : AppCompatActivity() {
 
             next_button.setOnClickListener {
                 val progress = indeterminateProgressDialog(
-                        message = "Please wait a bit…",
-                        title = "Loading")
+                        message = getString(R.string.wait_progress),
+                        title = getString(R.string.wait_starting_round))
                 "/lobbies/next".httpGet()
                         .header("Content-Type" to "application/json", "Authorization" to "Token " + jwt)
                         .responseJson { request, _, result ->
@@ -107,7 +107,6 @@ class LobbyActivity : AppCompatActivity() {
                                 val lobby: Lobby = lobbyMap["lobby"]!!
                                 lobby.currentPlayer = player
                                 lobby.isOwner = isOwner
-                                Log.d("Initiated next round", lobby.title)
                             }, failure = { error ->
                                 toast(error.toString())
                             })
@@ -138,11 +137,12 @@ class LobbyActivity : AppCompatActivity() {
     override fun onBackPressed() {
         if (isOwner) {
             alert {
-                title = "End game?"
+                title = getString(R.string.q_stop_game)
                 yesButton {
                     val progress = indeterminateProgressDialog(
-                            message = "Please wait a bit…",
-                            title = "Stopping lobby")
+                            message = getString(R.string.wait_progress),
+                            title = getString(R.string.wait_stopping)
+                    )
                     "/lobbies/stop".httpGet()
                             .header("Content-Type" to "application/json", "Authorization" to "Token " + jwt)
                             .responseJson { request, _, result ->
@@ -155,7 +155,6 @@ class LobbyActivity : AppCompatActivity() {
                                     lobby.currentPlayer = player
                                     lobby.isOwner = isOwner
                                     finish()
-                                    Log.d("Stopped lobby", lobby.title)
                                 }, failure = { error ->
                                     toast(error.toString())
                                 })
@@ -193,10 +192,10 @@ class LobbyActivity : AppCompatActivity() {
         Log.d(logTag, "Status: " + lobby.status)
         when (lobby.status) {
             "ping" -> {
-                // new RogerThatTask("https://muellersites.net/api/roger/", getApplicationContext()).execute(lobby.getPlayer().getId());
+                // TODO: Send response to server
             }
             "resubmit" -> {
-                longToast("You submitted the correct description. Please submit a different one!")
+                longToast(R.string.correct_description)
                 val intent = Intent(this, SubmitDescriptionActivity::class.java)
                 intent.putExtra("lobby", lobby)
                 startActivity(intent)
@@ -223,14 +222,14 @@ class LobbyActivity : AppCompatActivity() {
                 startActivity(intent)
             }
             "stage 3" -> {
-                toast("Round has ended!")
+                toast(R.string.round_ended)
                 if (isOwner) {
                     messageView.visibility = View.GONE
                     next_button.visibility = View.VISIBLE
                 }
             }
             "ended" -> {
-                toast("Game has ended!")
+                toast(R.string.game_ended)
                 this.finish()
             }
         }

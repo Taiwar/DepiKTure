@@ -29,11 +29,12 @@ class SubmitDescriptionActivity : AppCompatActivity() {
 
         submit_button.setOnClickListener {
             alert {
-                title = "Submit this description?"
+                title = getString(R.string.q_upload_description)
                 yesButton {
                     val progress = indeterminateProgressDialog(
-                            message = "Please wait a bit…",
-                            title = "Loading")
+                            message = getString(R.string.wait_progress),
+                            title = getString(R.string.uploading)
+                    )
                     lobby!!.currentPlayer!!.description = description_field.text.toString()
                     uploadDescription(lobby!!.currentPlayer!!, progress)
                     this@SubmitDescriptionActivity.finish()

@@ -34,11 +34,12 @@ class SelectDescriptionActivity : AppCompatActivity() {
                     textColor = resources.getColor(R.color.textColorPrimary, null)
                     onClick {
                         alert {
-                            title = "Choose this description?"
+                            title = getString(R.string.q_upload_description)
                             yesButton {
                                 val progress = indeterminateProgressDialog(
-                                        message = "Please wait a bit…",
-                                        title = "Loading")
+                                        message = getString(R.string.wait_progress),
+                                        title = getString(R.string.uploading)
+                                )
                                 lobby!!.currentPlayer!!.selection = description.color
                                 uploadSelection(lobby!!.currentPlayer!!, progress)
                                 this@SelectDescriptionActivity.finish()
