@@ -24,6 +24,10 @@ android {
     }
 }
 
+sourceSets {
+    main.java.srcDirs += 'src/main/kotlin'
+}
+
 dependencies {
     implementation 'com.google.firebase:firebase-messaging:11.6.2'
     compile fileTree(include: ['*.jar'], dir: 'libs')
