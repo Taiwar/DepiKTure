@@ -207,7 +207,7 @@ class LobbyActivity : AppCompatActivity() {
                 intent.putExtra("word", extra)
                 start_button.visibility = View.GONE
                 messageView.visibility = View.VISIBLE
-                messageView.setText(R.string.wait_message)
+                messageView.setText(R.string.wait_players)
                 startActivity(intent)
             }
             "stage 1" -> {
@@ -227,6 +227,7 @@ class LobbyActivity : AppCompatActivity() {
                     messageView.visibility = View.GONE
                     next_button.visibility = View.VISIBLE
                 }
+                messageView.setText(R.string.wait_owner)
             }
             "ended" -> {
                 toast(R.string.game_ended)

@@ -23,7 +23,7 @@
                 android:ellipsize="end"
                 android:gravity="center_vertical"
                 android:maxLines="1"
-                android:text="@string/settings_title" />
+                android:text="@string/title_activity_settings" />
 
         </android.support.v7.widget.Toolbar>
 
