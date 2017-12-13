@@ -207,46 +207,27 @@ class MainActivity : AppCompatActivity() {
                     padding = dip(24)
                     button(getString(R.string.choose_default_word_list)) {
                         padding = dip(8)
-                        textSize = 20f
+                        textSize = 18f
                         onClick {
                             currentDialog!!.dismiss()
-                            this@MainActivity.createWithDefaultDialog()
+                            val wordlists = listOf("German", "English")
+                            selector(getString(R.string.select_wordlist), wordlists, { _, i ->
+                                lobby.wordlist = wordlists[i]
+                                attemptCreate(lobby, user!!)
+                            })
                         }
                     }
                     textView(getString(R.string.or)) {
                         gravity = Gravity.CENTER
-                        textSize = 22f
+                        textSize = 20f
                         textColor = Color.WHITE
                     }
                     button(getString(R.string.enter_custom_word_list_title)) {
                         padding = dip(8)
-                        textSize = 20f
+                        textSize = 18f
                         onClick {
                             currentDialog!!.dismiss()
                             this@MainActivity.createWithCustomDialog()
-                        }
-                    }
-                }
-            }
-        }.show()
-    }
-
-    private fun createWithDefaultDialog() {
-        currentDialog = alert {
-            title = getString(R.string.title_create)
-            customView {
-                verticalLayout {
-                    padding = dip(24)
-                    button(getString(R.string.next)) {
-                        padding = dip(8)
-                        textSize = 22f
-                        onClick {
-                            val wordlists = listOf("German", "English")
-                            selector(getString(R.string.select_wordlist), wordlists, { _, i ->
-                                currentDialog!!.dismiss()
-                                lobby.wordlist = wordlists[i]
-                                attemptCreate(lobby, user!!)
-                            })
                         }
                     }
                 }
