@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
     private var isLoggedIn: Boolean = false
     private var currentDialog: DialogInterface? = null
     private var prefs: SharedPreferences? = null
+    private var lobby: Lobby = Lobby()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,116 +62,173 @@ class MainActivity : AppCompatActivity() {
         }
 
         newGameBtn.setOnClickListener{
-            currentDialog = alert {
-                title = getString(R.string.title_create)
-                customView {
-                    verticalLayout {
-                        padding = dip(24)
-                        button(getString(R.string.choose_default_word_list)) {
-                            padding = dip(8)
-                            textSize = 20f
-                            onClick {
-                                currentDialog!!.dismiss()
-                                this@MainActivity.createWithDefaultDialog()
-                            }
-                        }
-                        textView(getString(R.string.or)) {
-                            gravity = Gravity.CENTER
-                            textSize = 22f
-                            textColor = Color.WHITE
-                        }
-                        button(getString(R.string.enter_custom_word_list_title)) {
-                            padding = dip(8)
-                            textSize = 20f
-                            onClick {
-                                currentDialog!!.dismiss()
-                                this@MainActivity.createWithCustomDialog()
-                            }
-                        }
-                    }
-                }
-            }.show()
+            enterTitleDialog()
         }
 
         joinBtn.setOnClickListener {
-            currentDialog = alert {
-                title = getString(R.string.title_join)
-                customView {
-                    verticalLayout {
-                        padding = dip(24)
-                        val title = editText {
-                            hint = getString(R.string.hint_lobby_title)
-                            textSize = 20f
-                        }
-                        val username = editText {
-                            hint = getString(R.string.hint_username)
-                            textSize = 20f
-                        }
-                        button(getString(R.string.btn_join)) {
-                            padding = dip(8)
-                            textSize = 22f
-                            onClick {
-                                val titleVal = title.text.toString()
-                                val usernameVal = username.text.toString()
-                                if (isNameValid(titleVal) && isNameValid(usernameVal)) {
-                                    currentDialog!!.dismiss()
-                                    val progress = indeterminateProgressDialog(
-                                            message = getString(R.string.wait_progress),
-                                            title = getString(R.string.wait_joining)
-                                    )
-                                    val player = Player()
-                                    player.username = usernameVal
-                                    attemptJoin(titleVal, player, progress)
-                                } else {
-                                    toast(getString(R.string.prompt_lobby_title))
-                                }
-                            }
-                        }
-                    }
-                }
-            }.show()
+            joinDialog()
         }
 
         loginFab.setOnClickListener {
-            currentDialog = alert {
-                title = getString(R.string.title_login)
-                customView {
-                    verticalLayout {
-                        padding = dip(24)
-                        val email = editText {
-                            hint = getString(R.string.hint_email)
-                            textSize = 20f
-                        }
-                        val password = editText {
-                            hint = getString(R.string.hint_password)
-                            textSize = 20f
-                            inputType = TYPE_CLASS_TEXT or TYPE_TEXT_VARIATION_PASSWORD
-                        }
-                        button(getString(R.string.title_login)) {
-                            padding = dip(8)
-                            textSize = 22f
-                            onClick {
-                                val emailVal = email.text.toString()
-                                val passwordVal = password.text.toString()
-                                if (isEmailValid(emailVal) && isPasswordValid(passwordVal)) {
-                                    currentDialog!!.dismiss()
-                                    val progress = indeterminateProgressDialog(
-                                            message = getString(R.string.wait_progress),
-                                            title = getString(R.string.wait_login)
-                                    )
-                                    val user = User()
-                                    user.email = emailVal
-                                    user.password = passwordVal
-                                    attemptAuth(user, progress)
-                                } else {
-                                    toast(getString(R.string.error_invalid))
-                                }
+            loginDialog()
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+
+        if (id == R.id.action_settings) {
+            startActivity(Intent(this@MainActivity, SettingsActivity::class.java))
+            return true
+        } else if(id == R.id.action_about) {
+            startActivity(Intent(this@MainActivity, AboutActivity::class.java))
+            return true
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun joinDialog() {
+        currentDialog = alert {
+            title = getString(R.string.title_join)
+            customView {
+                verticalLayout {
+                    padding = dip(24)
+                    val title = editText {
+                        hint = getString(R.string.hint_lobby_title)
+                        textSize = 20f
+                    }
+                    val username = editText {
+                        hint = getString(R.string.hint_username)
+                        textSize = 20f
+                    }
+                    button(getString(R.string.btn_join)) {
+                        padding = dip(8)
+                        textSize = 22f
+                        onClick {
+                            val titleVal = title.text.toString()
+                            val usernameVal = username.text.toString()
+                            if (isNameValid(titleVal) && isNameValid(usernameVal)) {
+                                currentDialog!!.dismiss()
+                                val player = Player()
+                                player.username = usernameVal
+                                attemptJoin(titleVal, player)
+                            } else {
+                                toast(getString(R.string.prompt_lobby_title))
                             }
                         }
                     }
                 }
-            }.show()
-        }
+            }
+        }.show()
+    }
+
+    private fun loginDialog() {
+        currentDialog = alert {
+            title = getString(R.string.title_login)
+            customView {
+                verticalLayout {
+                    padding = dip(24)
+                    val email = editText {
+                        hint = getString(R.string.hint_email)
+                        textSize = 20f
+                    }
+                    val password = editText {
+                        hint = getString(R.string.hint_password)
+                        textSize = 20f
+                        inputType = TYPE_CLASS_TEXT or TYPE_TEXT_VARIATION_PASSWORD
+                    }
+                    button(getString(R.string.title_login)) {
+                        padding = dip(8)
+                        textSize = 22f
+                        onClick {
+                            val emailVal = email.text.toString()
+                            val passwordVal = password.text.toString()
+                            if (isEmailValid(emailVal) && isPasswordValid(passwordVal)) {
+                                currentDialog!!.dismiss()
+                                val progress = indeterminateProgressDialog(
+                                        message = getString(R.string.wait_progress),
+                                        title = getString(R.string.wait_login)
+                                )
+                                val user = User()
+                                user.email = emailVal
+                                user.password = passwordVal
+                                attemptAuth(user, progress)
+                            } else {
+                                toast(getString(R.string.error_invalid))
+                            }
+                        }
+                    }
+                }
+            }
+        }.show()
+    }
+
+    private fun enterTitleDialog() {
+        currentDialog = alert {
+            title = getString(R.string.title_create)
+            customView {
+                verticalLayout {
+                    padding = dip(24)
+                    val title = editText {
+                        hint = getString(R.string.hint_lobby_title)
+                        textSize = 20f
+                    }
+                    button(getString(R.string.create)) {
+                        padding = dip(8)
+                        textSize = 22f
+                        onClick {
+                            val titleVal = title.text.toString()
+                            if (isNameValid(titleVal)) {
+                                lobby.title = titleVal
+                                currentDialog!!.dismiss()
+                                createLobbyDialog()
+
+                            } else {
+                                toast(getString(R.string.prompt_lobby_title_invalid))
+                            }
+                        }
+                    }
+                }
+            }
+        }.show()
+    }
+
+    private fun createLobbyDialog() {
+        currentDialog = alert {
+            title = getString(R.string.title_create)
+            customView {
+                verticalLayout {
+                    padding = dip(24)
+                    button(getString(R.string.choose_default_word_list)) {
+                        padding = dip(8)
+                        textSize = 20f
+                        onClick {
+                            currentDialog!!.dismiss()
+                            this@MainActivity.createWithDefaultDialog()
+                        }
+                    }
+                    textView(getString(R.string.or)) {
+                        gravity = Gravity.CENTER
+                        textSize = 22f
+                        textColor = Color.WHITE
+                    }
+                    button(getString(R.string.enter_custom_word_list_title)) {
+                        padding = dip(8)
+                        textSize = 20f
+                        onClick {
+                            currentDialog!!.dismiss()
+                            this@MainActivity.createWithCustomDialog()
+                        }
+                    }
+                }
+            }
+        }.show()
     }
 
     private fun createWithDefaultDialog() {
@@ -179,32 +237,16 @@ class MainActivity : AppCompatActivity() {
             customView {
                 verticalLayout {
                     padding = dip(24)
-                    val title = editText {
-                        hint = getString(R.string.hint_wordlist_title)
-                        textSize = 20f
-                    }
                     button(getString(R.string.next)) {
                         padding = dip(8)
                         textSize = 22f
                         onClick {
-                            val titleVal = title.text.toString()
-                            if (isNameValid(titleVal)) {
+                            val wordlists = listOf("German", "English")
+                            selector(getString(R.string.select_wordlist), wordlists, { _, i ->
                                 currentDialog!!.dismiss()
-                                val lobby = Lobby()
-                                lobby.title = titleVal
-                                val wordlists = listOf("German", "English")
-                                selector(getString(R.string.select_wordlist), wordlists, { _, i ->
-                                    currentDialog!!.dismiss()
-                                    val progress = indeterminateProgressDialog(
-                                            message = getString(R.string.wait_progress),
-                                            title = getString(R.string.wait_creating)
-                                    )
-                                    lobby.wordlist = wordlists[i]
-                                    attemptCreate(lobby, user!!, progress)
-                                })
-                            } else {
-                                toast(getString(R.string.prompt_lobby_title_invalid))
-                            }
+                                lobby.wordlist = wordlists[i]
+                                attemptCreate(lobby, user!!)
+                            })
                         }
                     }
                 }
@@ -222,26 +264,15 @@ class MainActivity : AppCompatActivity() {
                         hint = getString(R.string.hint_wordlist_title)
                         textSize = 20f
                     }
-                    val title = editText {
-                        hint = getString(R.string.hint_lobby_title)
-                        textSize = 20f
-                    }
                     button(getString(R.string.create)) {
                         padding = dip(8)
                         textSize = 22f
                         onClick {
-                            val titleVal = title.text.toString()
                             val wordlistVal = wordList.text.toString()
-                            if (isNameValid(titleVal) && isNameValid(wordlistVal)) {
+                            if (isNameValid(wordlistVal)) {
                                 currentDialog!!.dismiss()
-                                val dialog = indeterminateProgressDialog(
-                                        message = getString(R.string.wait_progress),
-                                        title = getString(R.string.wait_creating)
-                                )
-                                val lobby = Lobby()
-                                lobby.title = titleVal
                                 lobby.wordlist = wordlistVal
-                                attemptCreate(lobby, user!!, dialog)
+                                attemptCreate(lobby, user!!)
                             } else {
                                 toast(getString(R.string.prompt_lobby_title_invalid))
                             }
@@ -279,9 +310,12 @@ class MainActivity : AppCompatActivity() {
                 }
     }
 
-    private fun attemptJoin(title: String, player: Player, progress: DialogInterface) {
+    private fun attemptJoin(title: String, player: Player) {
+        val progress = indeterminateProgressDialog(
+                message = getString(R.string.wait_progress),
+                title = getString(R.string.wait_creating)
+        )
         if (FirebaseInstanceId.getInstance().token != null) {
-            Log.d(logTag, "Token: " + FirebaseInstanceId.getInstance().token)
             player.instanceID = FirebaseInstanceId.getInstance().token
             "/lobbies/l/join/$title".httpPost()
                     .body("{\"player\": ${Gson().toJson(player)}}")
@@ -311,7 +345,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun attemptCreate(lobbyData: Lobby, user: User, progress: DialogInterface) {
+    private fun attemptCreate(lobbyData: Lobby, user: User) {
+        val progress = indeterminateProgressDialog(
+                message = getString(R.string.wait_progress),
+                title = getString(R.string.wait_creating)
+        )
         if (FirebaseInstanceId.getInstance().token != null) {
             Log.d(logTag, "Token: " + FirebaseInstanceId.getInstance().token)
             val player = user as Player
@@ -344,22 +382,4 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.main, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id = item.itemId
-
-        if (id == R.id.action_settings) {
-            startActivity(Intent(this@MainActivity, SettingsActivity::class.java))
-            return true
-        } else if(id == R.id.action_about) {
-            startActivity(Intent(this@MainActivity, AboutActivity::class.java))
-            return true
-        }
-
-        return super.onOptionsItemSelected(item)
-    }
 }
