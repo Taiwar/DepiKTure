@@ -7,7 +7,6 @@
         <item name="android:textColorPrimary">@color/textColorPrimary</item>
         <item name="android:textColorSecondary">@color/textColorPrimary</item>
         <item name="android:textColorHint">@color/textColorSecondary</item>
-        <item name="android:background">@color/colorPrimary</item>
         <item name="android:buttonStyle">@style/DPButton</item>
         <item name="android:alertDialogTheme">@style/DPAlertDialog</item>
         <item name="android:actionBarStyle">@style/DPActionBar</item>

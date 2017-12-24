@@ -27,7 +27,7 @@
         android:textAlignment="center"
         android:textAppearance="@android:style/TextAppearance.Material.Headline"
         android:textColor="@color/textColorPrimary"
-        android:textSize="50sp"
+        android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
