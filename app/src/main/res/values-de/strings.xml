@@ -12,13 +12,13 @@
     <string name="correct_description">Du hast die korrekte Beschreibung eingegeben, gib eine andere ein!</string>
     <string name="game_ended">Das Spiel ist vorbei</string>
     <string name="round_ended">Die Runde ist vorbei</string>
-    <string name="message_default">Nachricht</string>
+    <string name="message_default">Das Spiel fängt bald an</string>
     <string name="start_game">Spiel starten</string>
     <string name="next_round">Nächste Runde</string>
     <string name="next_round_error">Konnte nächste Runde nicht starten</string>
     <string name="start_lobby_error">Konnte Spiel nicht starten</string>
     <string name="wait_owner">Warte auf Lobbybesitzer</string>
-    <string name="wait_players">Warte auf spieler</string>
+    <string name="wait_players">Warte auf Spieler</string>
     <string name="title_activity_draw">Zeichnen</string>
     <string name="draw_btn">Zeichnen</string>
     <string name="game_started">Das Spiel hat begonnen! Zeichne:</string>

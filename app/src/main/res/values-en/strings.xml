@@ -30,7 +30,7 @@
     <string name="correct_description">You submitted the correct description. Please submit a different one!</string>
     <string name="game_ended">The game has ended!</string>
     <string name="round_ended">The round has ended!</string>
-    <string name="message_default">Message</string>
+    <string name="message_default">The game is about to begin</string>
     <string name="start_game">Start Game</string>
     <string name="next_round">Next Round</string>
     <string name="next_round_error">Couldn\'t start next round</string>
